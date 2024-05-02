@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inflo Login Test</title>
+    </head>
+    <body>
+        <div>
+            <button id="signIn">Sign In</button>
+        </div>
+
+        <script type="module">
+            import { startSignIn } from './main.js';
+            document.getElementById("signIn").addEventListener("click", startSignIn, false);
+        </script>
+
+    </body>
+</html>
