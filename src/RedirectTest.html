@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Inflo Login Test</title>
-    </head>
-    <body>
-        <h1>Login Complete!</h1>
-        
-        <div>
-            <label>Access Token</label>
-        </div>
-        <div>
-            <textarea style="width: 600px; height: 60px;" id="accessToken" readonly></textarea>
-        <div>
 
-        <div>
-            <a href="/">Back to Login</a>
-        </div>
+<head>
+    <title>Inflo Login Test</title>
+</head>
 
-        <script type="module">
-            import { completeSignIn } from './main.js';
-            completeSignIn().then(function(user) {
-                document.getElementById("accessToken").value = user.access_token;
+<body>
+    <h1>Login Complete!</h1>
+
+    <div>
+        <label>Access Token</label>
+    </div>
+    <div>
+        <textarea style="width: 600px; height: 60px;" id="accessToken" readonly></textarea>
+    </div>
+    <div>
+        <button id="sendApiRequest">Send Request</button>
+    </div>
+    <div>
+        <textarea style="width: 600px; height: 60px;" id="apiResponse" readonly></textarea>
+    </div>
+
+    <div>
+        <a href="/">Back to Login</a>
+    </div>
+
+    <script type="module">
+        import { completeSignIn, sendApiRequest } from './main.js';
+        completeSignIn().then(function (user) {
+            document.getElementById("accessToken").value = user.access_token;
+        });
+
+        document.getElementById("sendApiRequest").addEventListener("click", function () {
+            const token = document.getElementById("accessToken").value;
+            sendApiRequest(token).then(function (data) {
+                document.getElementById("apiResponse").value = JSON.stringify(data);
             });
-        </script>
+        })
+    </script>
 
-    </body>
+</body>
+
 </html>
